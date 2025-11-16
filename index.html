@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bittencourt Seguros - Consultoria Digital em Seguros</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #FFFFFF;
+            color: #1F2937;
+        }
+        
+        #inicio {
+            background-color: #FFFFFF;
+            background-image: radial-gradient(circle at 50% 0%, #F5F3FF 0%, #FFFFFF 60%);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-200 { transition-delay: 200ms; }
+        .delay-400 { transition-delay: 400ms; }
+        .delay-600 { transition-delay: 600ms; }
+        
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        
+        .accordion-button.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+        .accordion-button .accordion-icon {
+            transition: transform 0.3s ease-out;
+        }
+        
+        .header-shadow {
+            box-shadow: 0 4px 12px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(219, 39, 119, 0.7);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(219, 39, 119, 0);
+            }
+        }
+        
+        .animate-pulse-button {
+            animation: pulse 2.5s infinite cubic-bezier(0.4, 0, 0.6, 1);
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+
+    <header id="main-header" class="bg-white/90 backdrop-blur-md sticky top-0 z-50 transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            
+            <a href="index.html" class="block">
+                <img src="https://i.ibb.co/mC29p6ZJ/Imagem-do-Whats-App-de-2025-11-15-s-06-44-55-07e3ee42.png" alt="Logo Bittencourt Seguros" class="h-16 w-auto">
+            </a>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#solucoes" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300">Soluções</a>
+                <a href="quem-somos.html" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300">Quem Somos</a>
+                <a href="#faq" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300">Dúvidas</a>
+                <a href="https://api.whatsapp.com/send?phone=5511992818728" target="_blank" class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 px-6 rounded-full transition duration-300 shadow-md hover:shadow-lg transform hover:scale-105 animate-pulse-button">
+                    Fale Conosco
+                </a>
+            </div>
+            
+            <button id="menu-button" class="md:hidden text-gray-800 focus:outline-none">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg border-t">
+            <a href="#solucoes" class="block text-gray-700 px-6 py-4 hover:bg-gray-50">Soluções</a>
+            <a href="quem-somos.html" class="block text-gray-700 px-6 py-4 hover:bg-gray-50">Quem Somos</a>
+            <a href="#faq" class="block text-gray-700 px-6 py-4 hover:bg-gray-50">Dúvidas</a>
+            <a href="https://api.whatsapp.com/send?phone=5511992818728" target="_blank" class="block bg-pink-600 text-white font-bold text-center mx-6 my-4 py-3 px-6 rounded-full transition duration-300">
+                Fale Conosco
+            </a>
+        </div>
+    </header>
+
+    <main>
+        
+        <section id="inicio" class="relative pt-24 pb-12 lg:pt-32 lg:pb-24 overflow-hidden">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="text-center lg:text-left z-10">
+                        <span class="text-indigo-600 font-semibold uppercase tracking-wider fade-in-up">Bittencourt Seguros</span>
+                        <h1 class="text-5xl md:text-7xl font-extrabold text-gray-900 my-4 fade-in-up delay-200">
+                            Simplificamos os seguros para você.
+                        </h1>
+                        <p class="text-lg md:text-xl font-light text-gray-600 mb-10 max-w-lg mx-auto lg:mx-0 fade-in-up delay-400">
+                            Consultoria 100% digital, ágil e humana, focada em encontrar a proteção ideal para sua vida, seus bens e sua empresa.
+                        </p>
+                        <a href="https://api.whatsapp.com/send?phone=5511992818728" target="_blank" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-10 text-lg rounded-full transition duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105 fade-in-up delay-600">
+                            Falar com Especialista
+                        </a>
+                    </div>
+                    
+                    <div class="relative w-full h-full flex items-center justify-center fade-in-up delay-200">
+                        <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto max-w-lg lg:max-w-none">
+                            <path d="M 50 200 C 50 100, 150 50, 250 50 S 450 100, 450 200 S 350 350, 250 350 S 50 300, 50 200 Z" fill="#F0F5FF" />
+                            <circle cx="400" cy="100" r="50" fill="#FCE7F3" />
+                            <rect x="100" y="200" width="120" height="100" fill="#FFFFFF" stroke="#6366F1" stroke-width="4" rx="10" />
+                            <path d="M 90 200 L 160 140 L 230 200 Z" fill="#6366F1" />
+                            <circle cx="160" cy="250" r="15" fill="#DB2777" />
+                            <rect x="250" y="150" width="80" height="150" fill="#FFFFFF" stroke="#A78BFA" stroke-width="4" rx="10" />
+                            <rect x="270" y="170" width="15" height="15" fill="#A78BFA" />
+                            <rect x="295" y="170" width="15" height="15" fill="#A78BFA" />
+                            <rect x="270" y="200" width="15" height="15" fill="#A78BFA" />
+                            <rect x="295" y="200" width="15" height="15" fill="#A78BFA" />
+                            <rect x="270" y="230" width="15" height="15" fill="#A78BFA" />
+                            <rect x="295" y="230" width="15" height="15" fill="#A78BFA" />
+                            <path d="M 380 180 a 30 30 0 0 1 0 60 a 30 30 0 0 1 0 -60" fill="#DB2777" />
+                            <path d="M 400 180 a 30 30 0 0 1 0 60 a 30 30 0 0 1 0 -60" fill="#DB2777" />
+                            <path d="M 410 210 L 390 230 L 370 210 Z" fill="#DB2777" />
+                            <path d="M 390 230 L 390 260" stroke="#DB2777" stroke-width="4" />
+                            <rect x="180" y="260" width="60" height="30" fill="#FCD34D" rx="5" />
+                            <circle cx="195" cy="295" r="7" fill="#4B5563" />
+                            <circle cx="225" cy="295" r="7" fill="#4B5563" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="parceiros" class="py-24 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-4 fade-in-up">Parceria com as maiores seguradoras.</h2>
+                <p class="text-lg text-gray-600 text-center mb-12 fade-in-up delay-200">Garantia de solidez e as melhores coberturas para você.</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center">
+                    <img src="https://placehold.co/200x100/6B7280/FFFFFF?text=Porto" alt="Logo Seguradora Porto" class="mx-auto w-3/4 opacity-50 filter grayscale hover:grayscale-0 hover:opacity-100 transition duration-300 fade-in-up" onerror="this.src='https://placehold.co/200x100/6B7280/FFFFFF?text=Porto'">
+                    <img src="https://placehold.co/200x100/6B7280/FFFFFF?text=SulAm%C3%A9rica" alt="Logo Seguradora SulAmérica" class="mx-auto w-3/4 opacity-50 filter grayscale hover:grayscale-0 hover:opacity-100 transition duration-300 fade-in-up delay-200" onerror="this.src='https://placehold.co/200x100/6B7280/FFFFFF?text=SulAm%C3%A9rica'">
+                    <img src="https://placehold.co/200x100/6B7280/FFFFFF?text=Bradesco" alt="Logo Seguradora Bradesco" class="mx-auto w-3/4 opacity-50 filter grayscale hover:grayscale-0 hover:opacity-100 transition duration-300 fade-in-up delay-400" onerror="this.src='https://placehold.co/200x100/6B7280/FFFFFF?text=Bradesco'">
+                    <img src="https://placehold.co/200x100/6B7280/FFFFFF?text=Allianz" alt="Logo Seguradora Allianz" class="mx-auto w-3/4 opacity-50 filter grayscale hover:grayscale-0 hover:opacity-100 transition duration-300 fade-in-up delay-600" onerror="this.src='https://placehold.co/200x100/6B7280/FFFFFF?text=Allianz'">
+                    <img src="https://placehold.co/200x100/6B7280/FFFFFF?text=Tokio+Marine" alt="Logo Seguradora Tokio Marine" class="mx-auto w-3/4 opacity-50 filter grayscale hover:grayscale-0 hover:opacity-100 transition duration-300 fade-in-up" onerror="this.src='https://placehold.co/200x100/6B7280/FFFFFF?text=Tokio+Marine'">
+                    <img src="https://placehold.co/200x100/6B7280/FFFFFF?text=Chubb" alt="Logo Seguradora Chubb" class="mx-auto w-3/4 opacity-50 filter grayscale hover:grayscale-0 hover:opacity-100 transition duration-300 fade-in-up delay-200" onerror="this.src='https://placehold.co/200x100/6B7280/FFFFFF?text=Chubb'">
+                </div>
+            </div>
+        </section>
+
+        <section id="solucoes" class="py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-center text-gray-900 mb-4 fade-in-up">
+                        Proteção 360°
+                    </h2>
+                    <p class="text-lg text-gray-600 text-center mb-16 max-w-2xl mx-auto fade-in-up delay-200">
+                        Organizamos nossas soluções em três pilares essenciais. Encontre a cobertura ideal para cada momento da sua vida e negócio.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col border border-gray-100 hover:shadow-2xl hover:border-indigo-200 hover:-translate-y-2 transition-all duration-300 fade-in-up">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center mb-6 shadow-lg">
+                            <svg class="w-9 h-9 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 1 1 0 5.292M15 21H3v-1a6 6 0 0 1 12 0v1zm0 0h6v-1a6 6 0 0 0-9-5.197M13 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0z"></path></svg>
+                        </div>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-4">Para sua Vida</h3>
+                        <p class="text-gray-600 text-base mb-6 flex-grow">
+                            Proteção para o seu bem mais precioso: você e sua família. Garanta o futuro e a tranquilidade de quem você ama.
+                        </p>
+                        <ul class="text-gray-700 space-y-2 list-disc list-inside">
+                            <li>Seguro de Vida (Individual e Grupo)</li>
+                            <li>Planos de Saúde e Odontológicos</li>
+                            <li>Previdência Privada</li>
+                        </ul>
+                        <div class="mt-6 pt-6 border-t border-gray-100 space-y-3">
+                            <a href="https://forms.gle/G4SQqjWvhFUcUhyJA" target="_blank" class="block text-center w-full font-semibold text-indigo-600 hover:text-indigo-800 transition-all duration-300 py-2 px-4 rounded-lg hover:bg-indigo-50">
+                                Cotar Planos de Saúde
+                            </a>
+                             <a href="https://forms.gle/G4SQqjWvhFUcUhyJA" target="_blank" class="block text-center w-full font-semibold text-indigo-600 hover:text-indigo-800 transition-all duration-300 py-2 px-4 rounded-lg hover:bg-indigo-50">
+                                Cotar Previdência
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col border border-gray-100 hover:shadow-2xl hover:border-pink-200 hover:-translate-y-2 transition-all duration-300 fade-in-up delay-200">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-br from-pink-500 to-red-500 flex items-center justify-center mb-6 shadow-lg">
+                            <svg class="w-9 h-9 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M5 12h.01M5 15h.01M5 18h.01M9 12h.01M9 15h.01M9 18h.01M13 12h.01M13 15h.01M13 18h.01M17 12h.01M17 15h.01M17 18h.01"></path></svg>
+                        </div>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-4">Para seus Bens</h3>
+                        <p class="text-gray-600 text-base mb-6 flex-grow">
+                            Do seu meio de transporte ao seu lar. Cuidamos do seu patrimônio com a mesma dedicação que você.
+                        </p>
+                        <ul class="text-gray-700 space-y-2 list-disc list-inside">
+                            <li>Auto, Moto e Bike</li>
+                            <li>Residencial (Casa e Apartamento)</li>
+                            <li>Seguro Aluguel (Fiança)</li>
+                        </ul>
+                        <div class="mt-6 pt-6 border-t border-gray-100">
+                             <a href="https://api.whatsapp.com/send?phone=5511992818728" target="_blank" class="block text-center w-full font-semibold text-pink-600 hover:text-pink-800 transition-all duration-300 py-2 px-4 rounded-lg hover:bg-pink-50">
+                                Cotar Agora
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col border border-gray-100 hover:shadow-2xl hover:border-yellow-200 hover:-translate-y-2 transition-all duration-300 fade-in-up delay-400">
+                         <div class="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center mb-6 shadow-lg">
+                            <svg class="w-9 h-9 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 0 0-5.356-2.372M12 15H3v-2a3 3 0 0 1 5.356-2.372M12 13c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"></path></svg>
+                        </div>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-4">Para sua Empresa</h3>
+                        <p class="text-gray-600 text-base mb-6 flex-grow">
+                            Gestão de risco corporativo. Da responsabilidade civil ao agronegócio, garantimos a continuidade do seu negócio.
+                        </p>
+                        <ul class="text-gray-700 space-y-2 list-disc list-inside">
+                            <li>Empresarial e Comércio</li>
+                            <li>Responsabilidade Civil (RC)</li>
+                            <li>Transportes, Frotas e Agro</li>
+                        </ul>
+                        <div class="mt-6 pt-6 border-t border-gray-100">
+                             <a href="https://api.whatsapp.com/send?phone=5511992818728" target="_blank" class="block text-center w-full font-semibold text-yellow-600 hover:text-yellow-800 transition-all duration-300 py-2 px-4 rounded-lg hover:bg-yellow-50">
+                                Cotar Agora
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="como-funciona" class="py-24 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 fade-in-up">Nosso Processo Digital</h2>
+                    <p class="text-lg text-gray-600 mb-16 max-w-2xl mx-auto fade-in-up delay-200">
+                        Três passos simples separam você da sua tranquilidade.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center relative">
+                    <div class="relative bg-white border border-gray-100 p-8 rounded-xl shadow-lg fade-in-up">
+                        <svg class="w-full h-40 mb-6" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="10" y="10" width="180" height="100" rx="10" fill="#F0F5FF" />
+                            <rect x="30" y="30" width="100" height="10" rx="5" fill="#C7D2FE" />
+                            <rect x="30" y="50" width="140" height="8" rx="4" fill="#E0E7FF" />
+                            <rect x="30" y="70" width="130" height="8" rx="4" fill="#E0E7FF" />
+                            <circle cx="150" cy="80" r="25" fill="#6366F1" />
+                            <path d="M 145 80 L 149 84 L 157 76" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" />
+                        </svg>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">1. Análise</h3>
+                        <p class="text-gray-600">Você nos conta sua necessidade e nós entendemos seu perfil e risco.</p>
+                    </div>
+                    <div class="relative bg-white border border-gray-100 p-8 rounded-xl shadow-lg fade-in-up delay-200">
+                        <svg class="w-full h-40 mb-6" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="20" y="30" width="70" height="80" rx="10" fill="#FCE7F3" stroke="#DB2777" stroke-width="2"/>
+                            <path d="M 45 50 L 65 50" stroke="#DB2777" stroke-width="2"/>
+                            <path d="M 45 65 L 65 65" stroke="#DB2777" stroke-width="2"/>
+                            <rect x="65" y="20" width="70" height="80" rx="10" fill="#F3E8FF" stroke="#A855F7" stroke-width="2"/>
+                            <path d="M 90 40 L 110 40" stroke="#A855F7" stroke-width="2"/>
+                            <path d="M 90 55 L 110 55" stroke="#A855F7" stroke-width="2"/>
+                            <rect x="110" y="10" width="70" height="80" rx="10" fill="#F0F5FF" stroke="#6366F1" stroke-width="2"/>
+                            <path d="M 135 30 L 155 30" stroke="#6366F1" stroke-width="2"/>
+                            <path d="M 135 45 L 155 45" stroke="#6366F1" stroke-width="2"/>
+                        </svg>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">2. Consultoria</h3>
+                        <p class="text-gray-600">Apresentamos as cotações ideais, explicando cada ponto, sem "segurês".</p>
+                    </div>
+                    <div class="relative bg-white border border-gray-100 p-8 rounded-xl shadow-lg fade-in-up delay-400">
+                        <svg class="w-full h-40 mb-6" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 30 10 L 170 10 L 170 100 L 100 110 L 30 100 Z" fill="#F0F5FF" stroke="#6366F1" stroke-width="2" />
+                            <path d="M 50 40 L 150 40" stroke="#C7D2FE" stroke-width="3" />
+                            <path d="M 50 60 L 150 60" stroke="#C7D2FE" stroke-width="3" />
+                            <path d="M 50 80 L 100 80" stroke="#C7D2FE" stroke-width="3" />
+                            <circle cx="140" cy="80" r="20" fill="#DB2777" />
+                            <path d="M 134 80 L 138 84 L 146 76" stroke="white" stroke-width="3" fill="none" stroke-linecap="round"/>
+                        </svg>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">3. Emissão</h3>
+                        <p class="text-gray-600">Emitimos sua apólice digitalmente e ela chega no seu e-mail, pronta.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="digital" class="py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                    <div class="lg:w-1/2 w-full fade-in-up">
+                        <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="100%" height="100%" fill="#F9FAFB" rx="20" />
+                            <path d="M 100 350 C 150 380, 350 380, 400 350" stroke="#E5E7EB" stroke-width="10" fill="none" />
+                            <rect x="75" y="100" width="350" height="200" rx="15" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2" />
+                            <rect x="100" y="130" width="120" height="20" rx="5" fill="#C7D2FE" />
+                            <rect x="100" y="170" width="200" height="15" rx="5" fill="#E0E7FF" />
+                            <rect x="100" y="200" width="180" height="15" rx="5" fill="#E0E7FF" />
+                            <circle cx="370" cy="240" r="50" fill="#DB2777" class="shadow-lg" />
+                            <path d="M 360 240 L 368 248 L 380 235" stroke="white" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                            <circle cx="200" cy="70" r="30" fill="#6366F1" />
+                            <path d="M 160 110 Q 200 80 240 110 Z" fill="#6366F1" />
+                        </svg>
+                    </div>
+                    <div class="lg:w-1/2">
+                        <span class="text-indigo-600 font-semibold uppercase tracking-wider fade-in-up">Nosso DNA</span>
+                        <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mt-2 mb-6 fade-in-up delay-200">
+                            Digital na agilidade. Humano no atendimento.
+                        </h2>
+                        <p class="text-gray-600 text-lg leading-relaxed mb-8 fade-in-up delay-400">
+                            Não ter um endereço físico não é uma limitação, é nossa maior vantagem. A Bittencourt Seguros nasceu na nuvem para ser eficiente e acessível de qualquer lugar do Brasil.
+                        </p>
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4 fade-in-up delay-600">
+                                <div class="bg-indigo-600 text-white rounded-full w-10 h-10 flex-shrink-0 flex items-center justify-center font-bold text-xl">1</div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-gray-900">Agilidade na Cotação</h4>
+                                    <p class="text-gray-600">Usamos tecnologia para comparar as melhores seguradoras em tempo real.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4 fade-in-up delay-600">
+                                <div class="bg-pink-600 text-white rounded-full w-10 h-10 flex-shrink-0 flex items-center justify-center font-bold text-xl">2</div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-gray-900">Atendimento 100% Humano</h4>
+                                    <p class="text-gray-600">Você fala com especialistas (pessoas reais!) via WhatsApp, E-mail ou Vídeo.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="py-24 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="max-w-3xl mx-auto">
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-12 text-center fade-in-up">Perguntas Frequentes</h2>
+                    
+                    <div class="space-y-4 fade-in-up delay-200">
+                        <div class="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+                            <button class="accordion-button w-full flex justify-between items-center text-left p-6">
+                                <span class="text-xl font-semibold text-gray-900">Vocês atendem em todo o Brasil?</span>
+                                <span class="accordion-icon text-indigo-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </span>
+                            </button>
+                            <div class="accordion-content">
+                                <p class="text-gray-600 leading-relaxed p-6 pt-0">
+                                    Sim! Como somos uma corretora 100% digital, não temos barreiras geográficas. Atendemos clientes em todo o território nacional com a mesma agilidade e qualidade.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+                            <button class="accordion-button w-full flex justify-between items-center text-left p-6">
+                                <span class="text-xl font-semibold text-gray-900">Como eu faço para acionar o seguro (sinistro)?</span>
+                                <span class="accordion-icon text-indigo-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </span>
+                            </button>
+                            <div class="accordion-content">
+                                <p class="text-gray-600 leading-relaxed p-6 pt-0">
+                                    É muito simples. Você pode entrar em contato diretamente com a seguradora (pelos telefones na apólice) ou falar conosco. Nosso time de especialistas dará todo o suporte e orientação necessários, do aviso à indenização.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+                            <button class="accordion-button w-full flex justify-between items-center text-left p-6">
+                                <span class="text-xl font-semibold text-gray-900">Ser digital significa que falo com robôs?</span>
+                                <span class="accordion-icon text-indigo-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </span>
+                            </button>
+                            <div class="accordion-content">
+                                <p class="text-gray-600 leading-relaxed p-6 pt-0">
+                                    De forma alguma. Usamos a tecnologia para otimizar processos, mas nosso atendimento é 100% humano e personalizado. Você sempre falará com um especialista em seguros dedicado a entender seu caso.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato" class="py-24 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white">
+            <div class="container mx-auto px-6">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h2 class="text-4xl md:text-5xl font-extrabold mb-4 fade-in-up">Escolha seu caminho para a tranquilidade.</h2>
+                    <p class="text-lg text-indigo-100 mb-16 fade-in-up delay-200">
+                        Seja qual for sua preferência, temos um canal pronto para você.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white text-gray-800 rounded-xl shadow-2xl p-8 flex flex-col text-center items-center fade-in-up delay-200">
+                        <svg class="w-24 h-24 text-indigo-600 mb-4" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="20" y="40" width="160" height="120" rx="15" fill="#F0F5FF" stroke="#6366F1" stroke-width="4"/>
+                            <path d="M 20 80 L 180 80" stroke="#C7D2FE" stroke-width="4"/>
+                            <rect x="35" y="55" width="20" height="10" rx="5" fill="#C7D2FE"/>
+                            <rect x="65" y="55" width="20" height="10" rx="5" fill="#C7D2FE"/>
+                            <rect x="40" y="100" width="120" height="15" rx="5" fill="#A78BFA"/>
+                            <rect x="60" y="130" width="80" height="15" rx="5" fill="#A78BFA"/>
+                        </svg>
+                        <h3 class="text-2xl font-bold mb-3">Cotação via WhatsApp</h3>
+                        <p class="text-gray-600 mb-6 flex-grow">Para quem busca agilidade e autonomia, mas com atendimento humano.</p>
+                        <a href="https://api.whatsapp.com/send?phone=5511992818728" target="_blank" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 transform hover:scale-105">
+                            Cotar Agora
+                        </a>
+                    </div>
+                    
+                    <div class="bg-white text-gray-800 rounded-xl shadow-2xl p-8 flex flex-col text-center items-center fade-in-up delay-400">
+                        <svg class="w-24 h-24 text-pink-600 mb-4" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 100 20 C 140 20, 180 60, 180 100 C 180 140, 140 180, 100 180 C 60 180, 20 140, 20 100 C 20 60, 60 20, 100 20 Z" fill="#FCE7F3" />
+                            <path d="M 150 50 H 70 C 59 50, 50 59, 50 70 V 130 C 50 141, 59 150, 70 150 H 130 L 150 170 V 150 H 150 C 161 150, 170 141, 170 130 V 70 C 170 59, 161 50, 150 50 Z"
+                                  fill="#DB2777" />
+                            <path d="M 130 80 C 125 75, 115 70, 110 70 C 105 70, 95 75, 90 80 C 85 85, 80 95, 80 100 C 80 105, 85 115, 90 120 C 95 125, 105 130, 110 130 C 115 130, 125 125, 130 120 C 135 115, 140 105, 140 100 C 140 95, 135 85, 130 80 Z M 100 100 M 120 100" 
+                                  stroke="white" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <h3 class="text-2xl font-bold mb-3">Suporte para Dúvidas</h3>
+                        <p class="text-gray-600 mb-6 flex-grow">Tem alguma pergunta? Fale com um especialista para tirar todas as suas dúvidas.</p>
+                        <a href="https://api.whatsapp.com/send?phone=5511992818728" target="_blank" class="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 transform hover:scale-105">
+                            Tirar Dúvidas
+                        </a>
+                    </div>
+
+                    <div class="bg-white text-gray-800 rounded-xl shadow-2xl p-8 flex flex-col text-center items-center fade-in-up delay-600">
+                         <svg class="w-24 h-24 text-purple-600 mb-4" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="30" y="50" width="140" height="100" rx="15" fill="#F3E8FF" stroke="#A855F7" stroke-width="4"/>
+                            <path d="M 30 60 L 100 110 L 170 60" stroke="#A855F7" stroke-width="6" fill="none"/>
+                            <rect x="50" y="80" width="100" height="10" rx="5" fill="#D8B4FE"/>
+                            <rect x="50" y="100" width="70" height="10" rx="5" fill="#D8B4FE"/>
+                        </svg>
+                        <h3 class="text-2xl font-bold mb-3">Envie um E-mail</h3>
+                        <p class="text-gray-600 mb-6 flex-grow">Para quem prefere detalhar seu caso por escrito e anexar documentos.</p>
+                        <a href="mailto:segurosbittencourt@gmail.com" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 transform hover:scale-105">
+                            Escrever E-mail
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-50 text-gray-600">
+        <div class="container mx-auto px-6 py-12">
+            <div class="text-center">
+                <a href="#" class="inline-block mx-auto">
+                    <img src="https://i.ibb.co/mC29p6ZJ/Imagem-do-Whats-App-de-2025-11-15-s-06-44-55-07e3ee42.png" alt="Logo Bittencourt Seguros" class="h-10 w-auto">
+                </a>
+                <p class="mt-4 max-w-lg mx-auto">AF Bittencourt Corretagem de Seguros Ltda.<br>CNPJ: 62.297.513/0001-63</p>
+                <div class="mt-6 space-y-2">
+                    <p><a href="mailto:segurosbittencourt@gmail.com" class="hover:text-indigo-600">segurosbittencourt@gmail.com</a></p>
+                    <p><a href="https://api.whatsapp.com/send?phone=5511992818728" target="_blank" class="hover:text-indigo-600">WhatsApp: (11) 99281-8728</a></p>
+                </div>
+                <p class="mt-6 text-sm text-gray-500">Corretora de seguros 100% digital, registrada na SUSEP.
+                </p>
+            </div>
+            
+            <hr class="border-gray-200 my-8">
+            
+            <div class="text-center text-sm">
+                <p>&copy; 2025 Bittencourt Seguros. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const menuButton = document.getElementById('menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            menuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (!link.href.startsWith('http') && !link.href.startsWith('mailto')) {
+                         mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+
+            const animatedElements = document.querySelectorAll('.fade-in-up');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, { threshold: 0.1 }); 
+
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+            
+            const accordionButtons = document.querySelectorAll('.accordion-button');
+            
+            accordionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const content = button.nextElementSibling;
+                    const isActive = button.classList.contains('active');
+                    
+                    accordionButtons.forEach(otherButton => {
+                        if (otherButton !== button) {
+                            otherButton.classList.remove('active');
+                            otherButton.nextElementSibling.style.maxHeight = null;
+                            otherButton.classList.remove('text-indigo-600');
+                        }
+                    });
+                    
+                    if (!isActive) {
+                        button.classList.add('active');
+                        button.classList.add('text-indigo-600');
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    } else {
+                        button.classList.remove('active');
+                        button.classList.remove('text-indigo-600');
+                        content.style.maxHeight = null;
+                    }
+                });
+            });
+
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 10) {
+                    header.classList.add('header-shadow');
+                } else {
+                    header.classList.remove('header-shadow');
+                }
+            });
+
+        });
+    </script>
+
+</body>
+</html>
